@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 9: IX. LE SYSTÈME RESPIRATOIRE</title>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <script src="pwa.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .ar { font-family: 'Cairo', sans-serif; display: none; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen relative overflow-x-hidden text-slate-800">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <button onclick="window.location.href='menu.html'" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors font-semibold group">
+                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-slate-500 group-hover:text-blue-500"></i>
+                </div>
+                <span>Menu</span>
+            </button>
+            <div class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-emerald-600">
+                SVT - 9
+            </div>
+            <button onclick="toggleLang()" class="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-full hover:shadow-lg transition-all text-sm font-semibold text-blue-600 ring-4 ring-blue-50">
+                <i data-lucide="languages" class="w-4 h-4"></i>
+                <span id="lang-btn-text">Traduction</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20">
+        
+        <header class="text-center mb-16 animate-fade-in">
+            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold tracking-wider mb-4 uppercase">Partie 9</span>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+                IX. LE SYSTÈME RESPIRATOIRE
+            </h1>
+        </header>
+
+        
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">1. Rôle et Fonction</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">RESPIRATION ET ÉCHANGES</h3>
+            <p>Le système respiratoire a pour but d'assurer les échanges gazeux entre le sang et l'air ambiant :</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Apport d'Oxygène O2 :</strong> Indispensable aux cellules pour produire de l'énergie (ATP).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Élimination du Dioxyde de Carbone CO2 :</strong> Déchet toxique produit par les cellules.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">التنفس والتبادلات</h3>
+            <p>يهدف الجهاز التنفسي إلى ضمان التبادلات الغازية بين الدم والهواء المحيط:</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>جلب الأكسجين O2:</strong> ضروري للخلايا لإنتاج الطاقة (ATP).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>طرح ثنائي أكسيد الكربون CO2:</strong> فضلات سامة تنتجها الخلايا.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">2. Anatomie (Le Trajet de l'Air)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">VOIES AÉRIENNES SUPÉRIEURES</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Nez / Fosses Nasales :</strong> Filtrent, réchauffent et humidifient l'air.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Pharynx :</strong> Carrefour entre les voies respiratoires et digestives.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Larynx :</strong> Contient les cordes vocales (Organe de la phonation).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">المسالك الهوائية العلوية</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الأنف / الحفر الأنفية:</strong> تصفي، تدفئ وترطب الهواء.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>البلعوم (Pharynx):</strong> ملتقى الطرق بين المسالك التنفسية والهضمية.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الحنجرة (Larynx):</strong> تحتوي على الحبال الصوتية (عضو التصويت).</span></li>
+            </ul>
+                </div>
+            </div>
+                
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">VOIES AÉRIENNES INFÉRIEURES</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Trachée :</strong> Tube flexible maintenu ouvert par des anneaux de cartilage. Elle conduit l'air vers les poumons.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Bronches :</strong> La trachée se divise en deux bronches principales (droite et gauche).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Bronchioles :</strong> Les bronches se ramifient en tubes de plus en plus fins à l'intérieur des poumons.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">المسالك الهوائية السفلية</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الرغامى (Trachée):</strong> أنبوب مرن يبقى مفتوحاً بفضل حلقات غضروفية. ينقل الهواء نحو الرئتين.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>القصبات (Bronches):</strong> تنقسم الرغامى إلى قصبتين رئيسيتين (يمنى ويسرى).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>القصيبات (Bronchioles):</strong> تتفرع القصبات إلى أنابيب دقيقة جداً داخل الرئتين.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">3. Les Poumons</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">STRUCTURE</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Organes spongieux et élastiques protégés par la cage thoracique.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Poumon Droit :</strong> Plus gros, divisé en 3 lobes.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Poumon Gauche :</strong> Plus petit (pour laisser place au cœur), divisé en 2 lobes.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>La Plèvre :</strong> Double membrane qui entoure les poumons et leur permet de glisser contre les côtes lors de la respiration.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">البنية</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>أعضاء إسفنجية ومرنة محمية بالقفص الصدري.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الرئة اليمنى:</strong> أكبر، مقسمة إلى 3 فصوص.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الرئة اليسرى:</strong> أصغر (لتترك مكاناً للقلب)، مقسمة إلى فصين.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجنبة (Plèvre):</strong> غشاء مزدوج يحيط بالرئتين ويسمح لهما بالانزلاق ضد الأضلاع أثناء التنفس.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">4. Les Alvéoles (Lieu d'échange)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">HÉMATOSE (Échanges Gazeux)</h3>
+            <p>Les bronchioles se terminent par des sacs microscopiques appelés <strong>Alvéoles Pulmonaires</strong>.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Elles sont entourées de capillaires sanguins très fins.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>C'est ici que l'oxygène passe de l'air vers le sang, et le CO2 passe du sang vers l'air.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Surface d'échange immense (environ 70 à 100 m² !).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">التنقية الدموية (التبادلات الغازية)</h3>
+            <p>تنتهي القصيبات بأكياس مجهرية تسمى <strong>الأسناخ الرئوية</strong>.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>هي محاطة بشعيرات دموية دقيقة جداً.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>هنا يمر الأكسجين من الهواء إلى الدم، ويمر الـ CO2 من الدم إلى الهواء.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>مساحة تبادل هائلة (حوالي 70 إلى 100 متر مربع!).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">5. Mécanique Ventilatoire</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LE DIAPHRAGME</h3>
+            <p>C'est le muscle principal de la respiration, situé sous les poumons.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Inspiration (Active) :</strong> Le diaphragme se contracte et descend. Le volume du thorax augmente, l'air entre.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Expiration (Passive) :</strong> Le diaphragme se relâche et remonte. Le volume diminue, l'air sort.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">الحجاب الحاجز</h3>
+            <p>هو العضلة الرئيسية للتنفس، يوجد تحت الرئتين.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الشهيق (نشيط):</strong> يتقلص الحجاب الحاجز وينزل. يزداد حجم الصدر، فيدخل الهواء.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الزفير (سلبي):</strong> يرتخي الحجاب الحاجز ويصعد. ينقص الحجم، فيخرج الهواء.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">6. Fréquence Respiratoire (Rythme)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">VALEURS NORMALES (Au repos)</h3>
+            <p>Nombre de cycles (mouvements) par minute :</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Nouveau-né :</strong> 40 – 45 mvts/min.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Enfant :</strong> 20 – 25 mvts/min.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Adulte :</strong> 12 – 20 mvts/min.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">القيم العادية (في حالة راحة)</h3>
+            <p>عدد الحركات في الدقيقة:</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>حديث الولادة:</strong> 40 – 45 حركة/دقيقة.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الطفل:</strong> 20 – 25 حركة/دقيقة.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>البالغ:</strong> 12 – 20 حركة/دقيقة.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+
+    </main>
+
+    <footer class="max-w-4xl mx-auto px-4 pb-12 flex justify-between items-center animate-fade-in delay-300">
+        <a href="part 8.html" class="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors bg-white px-6 py-3 rounded-full border border-slate-200 hover:border-blue-200 shadow-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Précédent</span>
+        </a>
+        <a href="part 10.html" class="flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transform duration-300 font-bold">
+            <span>Suivant</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let isArabic = false;
+        function toggleLang() {
+            isArabic = !isArabic;
+            const frElements = document.querySelectorAll('.fr');
+            const arElements = document.querySelectorAll('.ar');
+            const btnText = document.getElementById('lang-btn-text');
+
+            if (isArabic) {
+                frElements.forEach(el => el.style.display = 'none');
+                arElements.forEach(el => el.style.display = 'block');
+                btnText.innerText = "Français";
+            } else {
+                frElements.forEach(el => el.style.display = 'block');
+                arElements.forEach(el => el.style.display = 'none');
+                btnText.innerText = "Arabe";
+            }
+        }
+    </script>
+</body>
+</html>

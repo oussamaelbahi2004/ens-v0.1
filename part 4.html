@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4: IV. ORGANISATION CELLULAIRE ET MOLÉCULAIRE (Complet)</title>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <script src="pwa.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .ar { font-family: 'Cairo', sans-serif; display: none; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen relative overflow-x-hidden text-slate-800">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <button onclick="window.location.href='menu.html'" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors font-semibold group">
+                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-slate-500 group-hover:text-blue-500"></i>
+                </div>
+                <span>Menu</span>
+            </button>
+            <div class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-emerald-600">
+                SVT - 4
+            </div>
+            <button onclick="toggleLang()" class="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-full hover:shadow-lg transition-all text-sm font-semibold text-blue-600 ring-4 ring-blue-50">
+                <i data-lucide="languages" class="w-4 h-4"></i>
+                <span id="lang-btn-text">Traduction</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20">
+        
+        <header class="text-center mb-16 animate-fade-in">
+            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold tracking-wider mb-4 uppercase">Partie 4</span>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+                IV. ORGANISATION CELLULAIRE ET MOLÉCULAIRE (Complet)
+            </h1>
+        </header>
+
+        
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">1. La Membrane Plasmique (La Barrière)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">STRUCTURE MOLÉCULAIRE : "MOSAÏQUE FLUIDE"</h3>
+            <p>Structure dynamique composée de 3 types de molécules :</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>1. Lipides (Phospholipides) :</strong> Bicouche imperméable (Têtes hydrophiles, Queues hydrophobes).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>2. Protéines :</strong> Insérées dans la membrane (Canaux, Pompes, Récepteurs).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>3. Glucides :</strong> Face externe uniquement (Glycocalyx) pour la reconnaissance cellulaire.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">البنية الجزيئية: "الفسيفساء المائعة"</h3>
+            <p>بنية ديناميكية تتكون من 3 أنواع من الجزيئات:</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>1. الدهنيات (فوسفودهنيات):</strong> طبقة مزدوجة غير نفوذة (رؤوس محبة للماء، ذيول كارهة للماء).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>2. البروتينات:</strong> منغرزة في الغشاء (قنوات، مضخات، مستقبلات).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>3. السكريات:</strong> الوجه الخارجي فقط (غليكوكاليكس) للتعرف الخلوي.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">2. Le Noyau (Centre de Contrôle)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">COMPOSITION ET RÔLE</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Enveloppe Nucléaire :</strong> Double membrane avec des <strong>Pores Nucléaires</strong> (sorties).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Chromatine :</strong> ADN + Protéines (Histones). Contient l'information génétique.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Nucléole :</strong> Fabrique les ribosomes.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">التركيب والدور</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الغلاف النووي:</strong> غشاء مزدوج به <strong>ثقوب نووية</strong> (مخارج).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الصبغين:</strong> ADN + بروتينات (هيستونات). يحتوي على الخبر الوراثي.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>النوية:</strong> تصنع الريبوزومات.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">3. Le Système de Synthèse et Transport</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">RÉTICULUM ENDOPLASMIQUE (RE)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>RE Rugueux :</strong> Avec ribosomes. Synthèse et transport des <strong>protéines</strong>.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>RE Lisse :</strong> Sans ribosomes. Synthèse des <strong>lipides</strong> et détoxification.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">الشبكة السيتوبلازمية (RE)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>شبكة خشنة:</strong> مع ريبوزومات. تركيب ونقل <strong>البروتينات</strong>.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>شبكة ملساء:</strong> بدون ريبوزومات. تركيب <strong>الدهنيات</strong> وإزالة السموم.</span></li>
+            </ul>
+                </div>
+            </div>
+                
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">APPAREIL DE GOLGI</h3>
+            <p>Sacs aplatis (Dictyosomes).</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Fonction :</strong> Reçoit, modifie (ajoute des sucres), trie et emballe les protéines dans des vésicules pour la <strong>Sécrétion</strong>.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">جهاز غولجي</h3>
+            <p>أكياس مسطحة (ديكتيوزومات).</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الوظيفة:</strong> يستقبل، يعدل (يضيف سكريات)، يفرز ويغلف البروتينات في حويصلات من أجل <strong>الإفراز</strong>.</span></li>
+            </ul>
+                </div>
+            </div>
+                
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LES LYSOSOMES</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Vésicules contenant des enzymes digestives (pH acide).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Rôle :</strong> Digestion (Nutriments, Bactéries) et Recyclage (Autophagie).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">الليوزوزومات</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>حويصلات تحتوي على إنزيمات هضمية (pH حمضي).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الدور:</strong> الهضم (مواد القيت، بكتيريا) وإعادة التدوير (الالتهام الذاتي).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">4. Les Convertisseurs d'Énergie</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LA MITOCHONDRIE (Animale & Végétale)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Double membrane (Crêtes internes).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Rôle :</strong> Respiration Cellulaire (Production d'<strong>ATP</strong> à partir de Glucose + $O_2$).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">الميتوكوندري (حيوانية ونباتية)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>غشاء مزدوج (أعراف داخلية).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الدور:</strong> التنفس الخلوي (إنتاج <strong>ATP</strong> انطلاقاً من غليكوز + $O_2$).</span></li>
+            </ul>
+                </div>
+            </div>
+                
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LE CHLOROPLASTE (Végétale seulement)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Contient la Chlorophylle (Vert).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Rôle :</strong> Photosynthèse (Énergie solaire $\rightarrow$ Sucres).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">البلاستيدة الخضراء (نباتية فقط)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>تحتوي على اليخضور (أخضر).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الدور:</strong> التركيب الضوئي (طاقة شمسية $\rightarrow$ سكريات).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">5. Le Cytosquelette</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">DÉFINITION & RÔLE</h3>
+            <p>Réseau de fibres (Microtubules, Microfilaments) dans le cytoplasme.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Maintient la forme de la cellule.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Sert de "rails" pour le transport des organites.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Participe à la division cellulaire (Fuseau mitotique).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">التعريف والدور</h3>
+            <p>شبكة من الألياف (أنبيبات دقيقة، خييطات دقيقة) في السيتوبلازم.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>تحافظ على شكل الخلية.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>تعمل كـ "سكك" لنقل العضيات.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>تشارك في الانقسام الخلوي (المغزل اللالوني).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">6. Organites de Mouvement (Appendices)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LES CILS ET LES FLAGELLES</h3>
+            <p>Ce sont des expansions de la membrane plasmique contenant des microtubules mobiles.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Flagelles :</strong> Longs et peu nombreux (souvent unique). Mouvement ondulatoire (comme un serpent). <em>Exemple : Spermatozoïde.</em></span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Cils :</strong> Courts et très nombreux. Mouvement de battement (comme des rames). <em>Exemple : Paramecie, Cellules de la trachée (pour remonter le mucus).</em></span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">الأهداب والسياط</h3>
+            <p>هي امتدادات للغشاء السيتوبلازمي تحتوي على أنبيبات دقيقة متحركة.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>السياط (Flagelles):</strong> طويلة وقليلة العدد (غالباً واحد). حركة تموجية (مثل الثعبان). <em>مثال: الحيوان المنوي.</em></span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الأهداب (Cils):</strong> قصيرة وكثيرة جداً. حركة ضربات (مثل المجاديف). <em>مثال: البراميسيوم، خلايا القصبة الهوائية (لصعود المخاط).</em></span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+
+    </main>
+
+    <footer class="max-w-4xl mx-auto px-4 pb-12 flex justify-between items-center animate-fade-in delay-300">
+        <a href="part 3.html" class="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors bg-white px-6 py-3 rounded-full border border-slate-200 hover:border-blue-200 shadow-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Précédent</span>
+        </a>
+        <a href="part 5.html" class="flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transform duration-300 font-bold">
+            <span>Suivant</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let isArabic = false;
+        function toggleLang() {
+            isArabic = !isArabic;
+            const frElements = document.querySelectorAll('.fr');
+            const arElements = document.querySelectorAll('.ar');
+            const btnText = document.getElementById('lang-btn-text');
+
+            if (isArabic) {
+                frElements.forEach(el => el.style.display = 'none');
+                arElements.forEach(el => el.style.display = 'block');
+                btnText.innerText = "Français";
+            } else {
+                frElements.forEach(el => el.style.display = 'block');
+                arElements.forEach(el => el.style.display = 'none');
+                btnText.innerText = "Arabe";
+            }
+        }
+    </script>
+</body>
+</html>

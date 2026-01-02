@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game - MTU Chapitre 1</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <script src="pwa.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&family=Cairo:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #475569;
+            --accent: #3b82f6;
+            --wrong: #ef4444;
+            --success: #22c55e;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Cairo', sans-serif;
+            background-color: var(--bg);
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .animate-pop {
+            animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            width: 95%;
+            max-width: 800px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 999px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 999px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .question-box {
+            margin: 40px 0;
+            min-height: 120px;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 18px 25px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #475569;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .correct {
+            background-color: #ecfdf5 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            font-weight: 700;
+        }
+
+        .incorrect {
+            background-color: #fef2f2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+            opacity: 0.8;
+        }
+
+        .result-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.5);
+            animation: pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .badge-type {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge-qcm {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .badge-vf {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        .badge-sit {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        .btn-action {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #475569, #334155);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+    <!-- Add Canvas for confetti -->
+    <canvas id="confetti-canvas"></canvas>
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <div id="game-interface">
+            <header>
+                <h1>Quiz : La Vie à l'Université</h1>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress"></div>
+                </div>
+                <div class="stats">
+                    <span id="q-counter">Question 1/45</span>
+                    <span id="score-display">Score: 0</span>
+                </div>
+            </header>
+
+            <div class="question-box">
+                <span id="q-type-badge" class="badge-type badge-qcm">QCM</span>
+                <div class="question-text" id="question">Chargement...</div>
+                <div class="options-grid" id="options">
+                </div>
+            </div>
+        </div>
+
+        <div id="result-interface" class="result-screen">
+            <h2>Quiz Terminé ! (ساليتي)</h2>
+            <div class="score-circle" id="final-score">0/45</div>
+            <p id="feedback-text" class="text-xl font-medium text-slate-600 mb-6">Analyse en cours...</p>
+
+            <a href="MTU CHAP 1.html" class="btn-action">GO BACK TO LESSON</a>
+            <button onclick="location.reload()" class="btn-action ml-4"
+                style="background: linear-gradient(135deg, #3b82f6, #2563eb);">REJOUER</button>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // --- Confetti Logic ---
+            const confetti = { maxCount: 150, speed: 2, frameInterval: 15, alpha: 1.0, gradient: false, start: null, stop: null, toggle: null, pause: null, resume: null, togglePause: null, remove: null, isPaused: null, isRunning: null }; (function () { confetti.start = startConfetti; confetti.stop = stopConfetti; confetti.toggle = toggleConfetti; confetti.pause = pauseConfetti; confetti.resume = resumeConfetti; confetti.togglePause = toggleConfettiPause; confetti.isPaused = isConfettiPaused; confetti.remove = removeConfetti; confetti.isRunning = isConfettiRunning; var supportsAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame; var colors = ["rgba(30,144,255,", "rgba(107,142,35,", "rgba(255,215,0,", "rgba(255,192,203,", "rgba(106,90,205,", "rgba(173,216,230,", "rgba(238,130,238,", "rgba(152,251,152,", "rgba(70,130,180,", "rgba(244,164,96,", "rgba(210,105,30,", "rgba(220,20,60,"]; var streamingConfetti = false; var animationTimer = null; var pause = false; var lastFrameTime = Date.now(); var particles = []; var waveAngle = 0; var context = null; function resetParticle(particle, width, height) { particle.color = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")"); particle.color2 = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")"); particle.x = Math.random() * width; particle.y = Math.random() * height - height; particle.diameter = Math.random() * 10 + 5; particle.tilt = Math.random() * 10 - 10; particle.tiltAngleIncrement = Math.random() * 0.07 + 0.05; particle.tiltAngle = Math.random() * Math.PI; return particle } function startConfetti(timeout, min, max) { var width = window.innerWidth; var height = window.innerHeight; window.requestAnimationFrame = (function () { return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) { return window.setTimeout(callback, confetti.frameInterval) } })(); var canvas = document.getElementById("confetti-canvas"); if (canvas === null) { canvas = document.createElement("canvas"); canvas.setAttribute("id", "confetti-canvas"); canvas.setAttribute("style", "display:block;z-index:999999;pointer-events:none;position:fixed;top:0"); document.body.prepend(canvas); canvas.width = width; canvas.height = height; window.addEventListener("resize", function () { canvas.width = window.innerWidth; canvas.height = window.innerHeight }, true); context = canvas.getContext("2d") } else if (context === null) context = canvas.getContext("2d"); var count = confetti.maxCount; if (min) { if (max) { if (min == max) count = particles.length + max; else { if (min > max) { var temp = min; min = max; max = temp } count = particles.length + ((Math.random() * (max - min) + min) | 0) } } else count = particles.length + min } else if (max) count = particles.length + max; while (particles.length < count) particles.push(resetParticle({}, width, height)); streamingConfetti = true; pause = false; runAnimation(); if (timeout) { window.setTimeout(stopConfetti, timeout) } } function stopConfetti() { streamingConfetti = false } function removeConfetti() { stopConfetti(); pause = false; particles = [] } function toggleConfetti() { if (streamingConfetti) stopConfetti(); else startConfetti() } function isConfettiPaused() { return pause } function toggleConfettiPause() { if (pause) resumeConfetti(); else pauseConfetti() } function pauseConfetti() { pause = true } function resumeConfetti() { pause = false; runAnimation() } function runAnimation() { if (pause) return; else if (particles.length === 0) { context.clearRect(0, 0, window.innerWidth, window.innerHeight); animationTimer = null } else { var now = Date.now(); var delta = now - lastFrameTime; if (!supportsAnimationFrame || delta > confetti.frameInterval) { context.clearRect(0, 0, window.innerWidth, window.innerHeight); updateParticles(); drawParticles(context); lastFrameTime = now - (delta % confetti.frameInterval) } animationTimer = requestAnimationFrame(runAnimation) } } function drawParticles(context) { var particle; var x, y, x2, y2; for (var i = 0; i < particles.length; i++) { particle = particles[i]; context.beginPath(); context.lineWidth = particle.diameter; x2 = particle.x + particle.tilt; x = x2 + particle.diameter / 2; y2 = particle.y + particle.tilt + particle.diameter / 2; if (confetti.gradient) { var gradient = context.createLinearGradient(x, particle.y, x2, y2); gradient.addColorStop("0", particle.color); gradient.addColorStop("1.0", particle.color2); context.strokeStyle = gradient } else context.strokeStyle = particle.color; context.moveTo(x, particle.y); context.lineTo(x2, y2); context.stroke() } } function updateParticles() { var width = window.innerWidth; var height = window.innerHeight; var particle; waveAngle += 0.01; for (var i = 0; i < particles.length; i++) { particle = particles[i]; if (!streamingConfetti && particle.y < -15) particle.y = height + 100; else { particle.tiltAngle += particle.tiltAngleIncrement; particle.x += Math.sin(waveAngle) - 0.5; particle.y += (Math.cos(waveAngle) + particle.diameter + confetti.speed) * 0.5; particle.tilt = Math.sin(particle.tiltAngle) * 15 } if (particle.x > width + 20 || particle.x < -20 || particle.y > height) { if (streamingConfetti && particles.length <= confetti.maxCount) resetParticle(particle, width, height); else { particles.splice(i, 1); i-- } } } } })();
+
+            // --- DATABASE DES QUESTIONS CHAPITRE 1 (45 Questions) ---
+            // Les réponses correctes sont indiquées par l'index 'a' (0, 1, 2, 3)
+            const quizData = [
+                // --- 30 QCM ---
+                // Organisation et Accès
+                { t: "QCM", q: "Le système d'enseignement supérieur marocain comprend :", o: ["Uniquement le secteur Public", "Le Public, le Privé et le Partenariat Public-Privé", "Seulement les Universités Privées", "Les lycées et collèges"], a: 1 },
+                { t: "QCM", q: "Un établissement à 'Accès Ouvert' (comme la Faculté) est accessible :", o: ["Sur concours uniquement", "À tous les titulaires du Baccalauréat", "Sur dossier scolaire", "Après un entretien oral"], a: 1 },
+                { t: "QCM", q: "Les établissements à 'Accès Régulé' (Ecoles, Instituts) :", o: ["Sont ouverts à tous", "Ont un nombre de places limité et une sélection", "N'existent pas au Maroc", "Ne demandent pas le Bac"], a: 1 },
+                { t: "QCM", q: "Qui dirige l'Université ?", o: ["Le Doyen", "Le Président", "Le Directeur", "Le Ministre directement"], a: 1 },
+                { t: "QCM", q: "Qui dirige une Faculté ?", o: ["Le Président", "Le Doyen", "Le Directeur", "Le Secrétaire Général"], a: 1 },
+                { t: "QCM", q: "Les étudiants sont-ils représentés dans les conseils de l'université ?", o: ["Non, jamais", "Oui, par des représentants élus", "Seulement les délégués de classe", "Oui, par les parents"], a: 1 },
+
+                // Système LMD (Cycle, Filière, Module)
+                { t: "QCM", q: "Dans le système LMD, quelle est la hiérarchie correcte ?", o: ["Module > Cycle > Filière", "Filière > Module > Cycle", "Cycle > Filière > Module", "Cycle > Module > Filière"], a: 2 },
+                { t: "QCM", q: "Combien de temps dure le cycle Licence (normalement) ?", o: ["2 ans", "3 ans (6 semestres)", "4 ans", "5 ans"], a: 1 },
+                { t: "QCM", q: "Un Module correspond à une matière enseignée sur :", o: ["Une année entière", "Un semestre", "Un mois", "Deux ans"], a: 1 },
+                { t: "QCM", q: "Combien d'heures (cours + éval) comporte un module environ ?", o: ["10 à 20 heures", "40 à 50 heures", "100 heures", "200 heures"], a: 1 },
+                { t: "QCM", q: "Les modules des semestres S1 et S2 constituent :", o: ["La spécialisation", "Le Tronc Commun", "Le Master", "Le Doctorat"], a: 1 },
+                { t: "QCM", q: "Quel diplôme obtient-on après la validation des 4 premiers semestres (S1 à S4) ?", o: ["La Licence", "Le DEUG", "Le Master", "Le Baccalauréat"], a: 1 },
+                { t: "QCM", q: "Quels types de modules trouve-t-on en Licence ?", o: ["Disciplinaires, Langues, Power Skills", "Sport, Musique, Cuisine", "Maths uniquement", "Français uniquement"], a: 0 },
+
+                // Validation et Crédits
+                { t: "QCM", q: "Pour valider un module, il faut une note supérieure ou égale à :", o: ["05/20", "10/20", "12/20", "15/20"], a: 1 },
+                { t: "QCM", q: "Un semestre est validé par compensation si la moyenne est >= 10 et :", o: ["Aucune note n'est inférieure à 5/20", "Aucune note n'est inférieure à 8/20", "Même avec un 0/20", "Si le prof est gentil"], a: 0 },
+                { t: "QCM", q: "Quelle est la note éliminatoire (qui empêche la compensation) ?", o: ["Moins de 10/20", "Moins de 7/20", "Moins de 5/20", "Moins de 3/20"], a: 2 },
+                { t: "QCM", q: "Combien de crédits faut-il pour obtenir la Licence ?", o: ["100 crédits", "180 crédits", "30 crédits", "60 crédits"], a: 1 },
+                { t: "QCM", q: "Combien de crédits valide un semestre ?", o: ["20 crédits", "30 crédits", "40 crédits", "60 crédits"], a: 1 },
+                { t: "QCM", q: "Un module disciplinaire (majeur) vaut généralement :", o: ["1 crédit", "2 crédits", "4 à 5 crédits", "10 crédits"], a: 2 },
+                { t: "QCM", q: "Un module de langue ou soft skills vaut généralement :", o: ["1 crédit", "3 crédits", "5 crédits", "6 crédits"], a: 1 },
+
+                // Modes d'enseignement et Services
+                { t: "QCM", q: "L'enseignement 'Hybride' signifie :", o: ["100% à distance", "100% en classe", "Un mélange de présentiel et de distance", "Un cours enregistré sur cassette"], a: 2 },
+                { t: "QCM", q: "L'enseignement à distance se fait via :", o: ["La poste", "Une plateforme numérique dédiée", "La télévision uniquement", "La radio"], a: 1 },
+                { t: "QCM", q: "Le 'Tutorat' en première année sert à :", o: ["Surveiller les examens", "Aider à l'intégration et la compréhension des cours", "Punir les retards", "Donner les bourses"], a: 1 },
+                { t: "QCM", q: "Le Plagiat (copier sans citer) est :", o: ["Encouragé", "Toléré", "Interdit et sanctionné", "Une preuve d'intelligence"], a: 2 },
+                { t: "QCM", q: "Quel service gère les bourses, le logement et la restauration ?", o: ["Le service de Scolarité", "L'ONOUSC", "Le Doyen", "La Bibliothèque"], a: 1 },
+                { t: "QCM", q: "Quel service gère les inscriptions et les diplômes ?", o: ["Le service de Scolarité", "L'ONOUSC", "Le concierge", "Le Ministère"], a: 0 },
+                { t: "QCM", q: "Que signifie AMO ?", o: ["Association Marocaine d'Organisation", "Assurance Maladie Obligatoire", "Aide Mensuelle aux Oubliés", "Aucune Mauvaise Odeur"], a: 1 },
+                { t: "QCM", q: "À quoi servent les 'Passerelles' ?", o: ["À traverser la rivière", "À se réorienter vers une autre filière", "À sauter une année", "À éviter les examens"], a: 1 },
+                { t: "QCM", q: "Quand peut-on accéder aux 'Centres d'Excellence' ?", o: ["Dès la 1ère année", "Après validation des 4 premiers semestres (S4)", "Après le Doctorat", "N'importe quand"], a: 1 },
+                { t: "QCM", q: "Le travail personnel de l'étudiant nécessite :", o: ["De l'autonomie", "De copier sur les autres", "D'attendre tout du prof", "De ne rien faire"], a: 0 },
+
+                // --- 10 Vrai/Faux ---
+                { t: "V/F", q: "Vrai ou Faux : Les établissements à accès ouvert (Facultés) exigent un concours d'entrée.", o: ["Vrai", "Faux"], a: 1 },
+                { t: "V/F", q: "Vrai ou Faux : Un semestre est validé si j'ai 10 de moyenne générale et un 3/20 en Maths.", o: ["Vrai", "Faux"], a: 1 },
+                { t: "V/F", q: "Vrai ou Faux : Le plagiat peut entraîner des sanctions graves.", o: ["Vrai", "Faux"], a: 0 },
+                { t: "V/F", q: "Vrai ou Faux : L'ONOUSC s'occupe de la couverture sanitaire des étudiants.", o: ["Vrai", "Faux"], a: 0 },
+                { t: "V/F", q: "Vrai ou Faux : On ne peut jamais changer de filière une fois inscrit.", o: ["Vrai", "Faux"], a: 1 },
+                { t: "V/F", q: "Vrai ou Faux : La Licence dure généralement 3 années.", o: ["Vrai", "Faux"], a: 0 },
+                { t: "V/F", q: "Vrai ou Faux : Un module validé donne droit à des crédits (ECTS).", o: ["Vrai", "Faux"], a: 0 },
+                { t: "V/F", q: "Vrai ou Faux : L'enseignement à distance oblige l'étudiant à être présent en classe.", o: ["Vrai", "Faux"], a: 1 },
+                { t: "V/F", q: "Vrai ou Faux : Les étudiants élisent leurs représentants dans les conseils de l'université.", o: ["Vrai", "Faux"], a: 0 },
+                { t: "V/F", q: "Vrai ou Faux : Le DEUG est obtenu après la validation de la 3ème année.", o: ["Vrai", "Faux"], a: 1 },
+
+                // --- 5 Situations ---
+                { t: "SITUATION", q: "Mise en situation : Sara a eu 12/20 de moyenne au S1, mais elle a eu 04/20 en Langues. Son semestre est-il validé ?", o: ["Oui, car la moyenne > 10", "Non, car 4/20 est une note éliminatoire", "Oui, par rattrapage", "Ça dépend du professeur"], a: 1 },
+                { t: "SITUATION", q: "Mise en situation : Ahmed veut changer de filière après son S1 car il n'aime pas ses études. Que doit-il utiliser ?", o: ["Le système des Passerelles", "Abandonner ses études", "Refaire le Bac", "Payer une amende"], a: 0 },
+                { t: "SITUATION", q: "Mise en situation : Vous avez besoin d'une attestation de scolarité. Où allez-vous ?", o: ["Chez le concierge", "Au service de Scolarité", "À la buvette", "À l'ONOUSC"], a: 1 },
+                { t: "SITUATION", q: "Mise en situation : Karim copie un paragraphe d'Internet pour son rapport sans mettre la source. C'est :", o: ["De la recherche", "Du Plagiat", "De l'inspiration", "Autorisé"], a: 1 },
+                { t: "SITUATION", q: "Mise en situation : Vous cherchez un logement universitaire et une bourse. Quel organisme contacter ?", o: ["La Commune", "L'ONOUSC", "Le Ministère des Finances", "La Faculté directement"], a: 1 }
+            ];
+
+            let currentQuestionIndex = 0;
+            let score = 0;
+
+            const ui = {
+                question: document.getElementById('question'),
+                options: document.getElementById('options'),
+                progress: document.getElementById('progress'),
+                counter: document.getElementById('q-counter'),
+                score: document.getElementById('score-display'),
+                gameInterface: document.getElementById('game-interface'),
+                resultInterface: document.getElementById('result-interface'),
+                finalScore: document.getElementById('final-score'),
+                feedbackText: document.getElementById('feedback-text'),
+                badge: document.getElementById('q-type-badge')
+            };
+
+            function loadQuestion() {
+                if (currentQuestionIndex >= quizData.length) {
+                    endGame();
+                    return;
+                }
+
+                const data = quizData[currentQuestionIndex];
+
+                // Mise à jour de l'affichage
+                ui.question.innerText = data.q;
+                ui.counter.innerText = `Question ${currentQuestionIndex + 1}/${quizData.length}`;
+                ui.score.innerText = `Score: ${score}`;
+
+                // Badge Type
+                ui.badge.innerText = data.t;
+                ui.badge.className = 'badge-type';
+                if (data.t === 'QCM') ui.badge.classList.add('badge-qcm');
+                else if (data.t === 'V/F') ui.badge.classList.add('badge-vf');
+                else ui.badge.classList.add('badge-sit');
+
+                // Barre de progression
+                const progressPercent = ((currentQuestionIndex) / quizData.length) * 100;
+                ui.progress.style.width = `${progressPercent}%`;
+
+                // Générer les boutons
+                ui.options.innerHTML = '';
+                data.o.forEach((option, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.innerText = option;
+                    btn.onclick = () => checkAnswer(index, btn);
+                    ui.options.appendChild(btn);
+                });
+            }
+
+            window.checkAnswer = function (selectedIndex, btnElement) {
+                const allBtns = document.querySelectorAll('.option-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+
+                const correctIndex = quizData[currentQuestionIndex].a;
+
+                if (selectedIndex === correctIndex) {
+                    btnElement.classList.add('correct');
+                    score++;
+                    ui.score.innerText = `Score: ${score}`;
+                } else {
+                    btnElement.classList.add('incorrect');
+                    if (allBtns[correctIndex]) {
+                        allBtns[correctIndex].classList.add('correct');
+                    }
+                }
+
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                }, 1000);
+            };
+
+            function endGame() {
+                ui.gameInterface.style.display = 'none';
+                ui.resultInterface.style.display = 'flex';
+                ui.finalScore.innerText = `${score}/${quizData.length}`;
+
+                const percentage = (score / quizData.length) * 100;
+                let msg = "";
+                if (percentage === 100) msg = "Excellent ! Tu connais l'université par cœur ! (تبارك الله عليك)";
+                else if (percentage >= 70) msg = "Très bien ! Tu es prêt pour la vie universitaire.";
+                else if (percentage >= 50) msg = "Pas mal, mais revois quelques règles (LMD, Validation...).";
+                else msg = "Attention, il faut relire le Chapitre 1 pour ne pas être perdu !";
+
+                ui.feedbackText.innerText = msg;
+            }
+
+            // Lancement du jeu
+            loadQuestion();
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 7: VII. LES EUCARYOTES</title>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <script src="pwa.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .ar { font-family: 'Cairo', sans-serif; display: none; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen relative overflow-x-hidden text-slate-800">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <button onclick="window.location.href='menu.html'" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors font-semibold group">
+                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-slate-500 group-hover:text-blue-500"></i>
+                </div>
+                <span>Menu</span>
+            </button>
+            <div class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-emerald-600">
+                SVT - 7
+            </div>
+            <button onclick="toggleLang()" class="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-full hover:shadow-lg transition-all text-sm font-semibold text-blue-600 ring-4 ring-blue-50">
+                <i data-lucide="languages" class="w-4 h-4"></i>
+                <span id="lang-btn-text">Traduction</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20">
+        
+        <header class="text-center mb-16 animate-fade-in">
+            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold tracking-wider mb-4 uppercase">Partie 7</span>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+                VII. LES EUCARYOTES
+            </h1>
+        </header>
+
+        
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">1. Définition et Caractéristiques</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LE VRAI NOYAU</h3>
+            <p>Le terme "Eucaryote" signifie "Vrai Noyau" (Eu = Vrai, Caryon = Noyau).</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Noyau :</strong> L'ADN est linéaire et protégé par une enveloppe nucléaire.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Compartimentation :</strong> Le cytoplasme contient des organites membranaires (Mitochondries, RE, Golgi...).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Taille :</strong> Généralement plus grande que les procaryotes (10 à 100 µm).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Diversité :</strong> Peuvent être unicellulaires (Protistes, Levures) ou pluricellulaires (Animaux, Végétaux).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">النواة الحقيقية</h3>
+            <p>مصطلح "Eucaryote" يعني "نواة حقيقية" (Eu = حقيقي، Caryon = نواة).</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>النواة:</strong> الـ ADN خطي ومحمي بغلاف نووي.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>التقسيم:</strong> السيتوبلازم يحتوي على عضيات غشائية (ميتوكوندريات، شبكة، غولجي...).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>القد:</strong> عموماً أكبر من بدائيات النواة (10 إلى 100 ميكرومتر).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>التنوع:</strong> يمكن أن تكون وحيدة الخلية (طلائعيات، خمائر) أو متعددة الخلايا (حيوانات، نباتات).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">2. La Cellule Animale</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">CARACTÉRISTIQUES SPÉCIFIQUES</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Enveloppe :</strong> Uniquement une membrane plasmique (Pas de paroi rigide). Forme irrégulière ou arrondie.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Nutrition :</strong> Hétérotrophe (Doit consommer de la matière organique).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Réserves :</strong> Glycogène (Sucre) et Lipides.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Organites spécifiques :</strong> Possède des Centrosomes (pour la division cellulaire) et des Lysosomes abondants.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">خصائص نوعية</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الغلاف:</strong> غشاء سيتوبلازمي فقط (لا يوجد جدار صلب). شكل غير منتظم أو دائري.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>التغذية:</strong> مغيرة التغذية (يجب أن تستهلك المادة العضوية).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>المخزون:</strong> غليكوجين (سكر) ودهنيات.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>عضيات خاصة:</strong> تملك الجسيمات المركزية (للانقسام الخلوي) وليوزوزومات كثيرة.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">3. La Cellule Végétale</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LES 3 DIFFÉRENCES MAJEURES</h3>
+            <p>Elle se distingue de la cellule animale par la présence de :</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>1. Paroi Pecto-cellulosique :</strong> Paroi épaisse et rigide à l'extérieur de la membrane. Elle donne une forme géométrique (souvent rectangulaire).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>2. Chloroplastes :</strong> Organites verts contenant la chlorophylle. Siège de la <strong>Photosynthèse</strong> (Autotrophie).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>3. Vacuole Centrale :</strong> Très grande poche d'eau qui occupe la majorité du volume et pousse le noyau sur le côté.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">الاختلافات الثلاثة الرئيسية</h3>
+            <p>تتميز عن الخلية الحيوانية بوجود:</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>1. الجدار السيليلوزي:</strong> جدار سميك وصلب خارج الغشاء. يعطي شكلاً هندسياً (غالباً مستطيل).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>2. البلاستيدات الخضراء:</strong> عضيات خضراء تحتوي على اليخضور. مقر <strong>التركيب الضوئي</strong> (ذاتية التغذية).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>3. الفجوة المركزية:</strong> جيب مائي كبير جداً يحتل غالبية الحجم ويدفع النواة إلى الجانب.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                    <i data-lucide="circle" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">4. Autres Eucaryotes (Fungi & Protistes)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-slate-500 mb-6 group hover:border-slate-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">LES CHAMPIGNONS (Fungi)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Possèdent une paroi (comme les plantes) mais faite de <strong>Chitine</strong> (pas de cellulose).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Pas de chloroplastes (Hétérotrophes).</span></li>
+            </ul>
+            <h3 class="text-xl font-bold text-slate-700 mb-4 block">LES PROTISTES</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Eucaryotes unicellulaires "fourre-tout".</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>Exemple : Amibe (Proche animal), Euglène (Proche plante).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 block">الفطريات (Fungi)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>تملك جداراً (مثل النباتات) لكنه مكون من <strong>الكيتين</strong> (ليس السيليلوز).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>لا تملك بلاستيدات (مغيرة التغذية).</span></li>
+            </ul>
+            <h3 class="text-xl font-bold text-slate-700 mb-4 block">الطلائعيات (Protistes)</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>حقيقيات نواة وحيدة الخلية "مختلطة".</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span>مثال: الأميبا (قريبة من الحيوان)، اليوغلينا (قريبة من النبات).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+
+    </main>
+
+    <footer class="max-w-4xl mx-auto px-4 pb-12 flex justify-between items-center animate-fade-in delay-300">
+        <a href="part 6.html" class="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors bg-white px-6 py-3 rounded-full border border-slate-200 hover:border-blue-200 shadow-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Précédent</span>
+        </a>
+        <a href="part 8.html" class="flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transform duration-300 font-bold">
+            <span>Suivant</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let isArabic = false;
+        function toggleLang() {
+            isArabic = !isArabic;
+            const frElements = document.querySelectorAll('.fr');
+            const arElements = document.querySelectorAll('.ar');
+            const btnText = document.getElementById('lang-btn-text');
+
+            if (isArabic) {
+                frElements.forEach(el => el.style.display = 'none');
+                arElements.forEach(el => el.style.display = 'block');
+                btnText.innerText = "Français";
+            } else {
+                frElements.forEach(el => el.style.display = 'block');
+                arElements.forEach(el => el.style.display = 'none');
+                btnText.innerText = "Arabe";
+            }
+        }
+    </script>
+</body>
+</html>

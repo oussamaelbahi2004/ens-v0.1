@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Niveaux d'Organisation - SVT</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <script src="pwa.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .ar {
+            font-family: 'Cairo', sans-serif;
+            display: none;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 min-h-screen relative overflow-x-hidden text-slate-800">
+
+    <!-- Background Decoration -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div
+            class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4">
+        </div>
+    </div>
+
+    <!-- Header -->
+    <nav class="fixed top-0 w-full z-50 glass shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <button onclick="window.location.href='menu.html'"
+                class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors font-semibold group">
+                <div
+                    class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-slate-500 group-hover:text-blue-500"></i>
+                </div>
+                <span>Retour au Menu</span>
+            </button>
+            <div class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-emerald-600">
+                SVT - Chapitre 1
+            </div>
+            <button onclick="toggleLang()"
+                class="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-full hover:shadow-lg transition-all text-sm font-semibold text-blue-600 ring-4 ring-blue-50">
+                <i data-lucide="languages" class="w-4 h-4"></i>
+                <span id="lang-btn-text">Traduction (Arabe)</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20">
+
+        <header class="text-center mb-16 animate-fade-in">
+            <span
+                class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold tracking-wider mb-4 uppercase">Partie
+                2</span>
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+                Niveaux d'Organisation <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">du Monde
+                    Vivant</span>
+            </h1>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                De l'atome à la biosphère : découvrez comment la vie s'organise et se structure à différentes échelles.
+            </p>
+        </header>
+
+        <!-- 1. Niveau Chimique -->
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-500 shadow-sm">
+                    <i data-lucide="atom" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">1. Le Niveau Chimique <span
+                        class="text-sm font-normal text-slate-400 ml-2">(Non Vivant)</span></h2>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 shadow-sm relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
+                </div>
+
+                <div class="lang-content fr relative z-10">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 flex items-center gap-2">
+                        ATOME <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i> MOLÉCULE
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <span class="w-2 h-2 mt-2 rounded-full bg-slate-400 shrink-0"></span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">L'Atome</strong>
+                                <p class="text-slate-600 leading-relaxed">La plus petite unité de la matière (C, H, O,
+                                    N). C'est le niveau le plus bas de l'organisation.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="w-2 h-2 mt-2 rounded-full bg-slate-400 shrink-0"></span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">La Molécule</strong>
+                                <p class="text-slate-600 leading-relaxed">Assemblage d'atomes liés chimiquement (ex: Eau
+                                    H₂O, Glucose, ADN).</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lang-content ar relative z-10" dir="rtl">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4 flex items-center gap-2">
+                        ذرة <i data-lucide="arrow-left" class="w-4 h-4 text-slate-400"></i> جزيئة
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <span class="w-2 h-2 mt-2 rounded-full bg-slate-400 shrink-0 bg-slate-400"></span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">الذرة</strong>
+                                <p class="text-slate-600 leading-relaxed">أصغر وحدة للمادة (كربون، هيدروجين...). هو
+                                    المستوى الأدنى.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="w-2 h-2 mt-2 rounded-full bg-slate-400 shrink-0"></span>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">الجزيئة</strong>
+                                <p class="text-slate-600 leading-relaxed">تجمع لذرات مرتبطة كيميائياً (مثال: الماء،
+                                    الغليكوز، ADN).</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Niveau Cellulaire -->
+        <section class="mb-12 animate-fade-in delay-200">
+            <div class="flex items-center gap-4 mb-6">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm shadow-blue-200">
+                    <i data-lucide="microscope" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">2. Le Niveau Cellulaire <span
+                        class="text-sm font-normal text-blue-500 ml-2">(Début de la Vie)</span></h2>
+            </div>
+
+            <div
+                class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-blue-500 relative overflow-hidden group">
+                <div class="lang-content fr relative z-10">
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">ORGANITE &rarr; CELLULE</h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <i data-lucide="circle-dot" class="w-5 h-5 text-blue-400 shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">L'Organite</strong>
+                                <p class="text-slate-600">Structure spécialisée dans la cellule (ex: Mitochondrie,
+                                    Noyau). Ce n'est pas encore autonome.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">La Cellule</strong>
+                                <p class="text-slate-600">L'unité de base structurale et fonctionnelle de tout être
+                                    vivant. <span class="text-blue-600 font-semibold">C'est le premier niveau qui
+                                        possède toutes les caractéristiques de la vie.</span></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lang-content ar relative z-10" dir="rtl">
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">عضي &larr; خلية</h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <i data-lucide="circle-dot" class="w-5 h-5 text-blue-400 shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">العضي</strong>
+                                <p class="text-slate-600">بنية متخصصة داخل الخلية (مثال: ميتوكوندري، نواة). ليس مستقلاً
+                                    بعد.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="text-slate-900 block mb-1">الخلية</strong>
+                                <p class="text-slate-600">الوحدة الأساسية البنيوية والوظيفية لكل كائن حي. <span
+                                        class="text-blue-600 font-semibold">هو أول مستوى يمتلك جميع خصائص الحياة.</span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Niveau Organique -->
+        <section class="mb-12 animate-fade-in delay-300">
+            <div class="flex items-center gap-4 mb-6">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-orange-600 shadow-sm shadow-orange-200">
+                    <i data-lucide="heart" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">3. Le Niveau Organique</h2>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-orange-500 mb-6">
+                <div class="lang-content fr">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-orange-50/50 p-4 rounded-xl border border-orange-100">
+                            <strong class="text-orange-700 block mb-2">1. Tissu</strong>
+                            <p class="text-sm text-slate-600">Groupe de cellules semblables (ex: Muscle, Nerf).</p>
+                        </div>
+                        <div class="bg-orange-50/50 p-4 rounded-xl border border-orange-100">
+                            <strong class="text-orange-700 block mb-2">2. Organe</strong>
+                            <p class="text-sm text-slate-600">Structure de plusieurs tissus (ex: Cœur, Estomac).</p>
+                        </div>
+                        <div class="bg-orange-50/50 p-4 rounded-xl border border-orange-100">
+                            <strong class="text-orange-700 block mb-2">3. Système</strong>
+                            <p class="text-sm text-slate-600">Ensemble d'organes (ex: Digestif, Nerveux).</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                        <strong class="text-slate-900 block mb-1">L'ORGANISME (L'Individu)</strong>
+                        <p class="text-slate-600">L'être vivant entier (Homme, Animal, Plante) constitué de systèmes en
+                            harmonie.</p>
+                    </div>
+                </div>
+
+                <div class="lang-content ar" dir="rtl">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-orange-50/50 p-4 rounded-xl border border-orange-100">
+                            <strong class="text-orange-700 block mb-2">1. النسيج</strong>
+                            <p class="text-sm text-slate-600">مجموعة خلايا متشابهة (مثال: عضلي، عصبي).</p>
+                        </div>
+                        <div class="bg-orange-50/50 p-4 rounded-xl border border-orange-100">
+                            <strong class="text-orange-700 block mb-2">2. العضو</strong>
+                            <p class="text-sm text-slate-600">بنية تتكون من عدة أنسجة (مثال: القلب، المعدة).</p>
+                        </div>
+                        <div class="bg-orange-50/50 p-4 rounded-xl border border-orange-100">
+                            <strong class="text-orange-700 block mb-2">3. الجهاز</strong>
+                            <p class="text-sm text-slate-600">مجموعة أعضاء تتعاون (مثال: الهضمي، العصبي).</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                        <strong class="text-slate-900 block mb-1">الكائن الحي (الفرد)</strong>
+                        <p class="text-slate-600">الكائن الحي بأكمله (إنسان، حيوان، نبات) يتكون من أجهزة تعمل بانسجام.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Niveau Écologique -->
+        <section class="animate-fade-in delay-400">
+            <div class="flex items-center gap-4 mb-6">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600 shadow-sm shadow-emerald-200">
+                    <i data-lucide="globe" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">4. Le Niveau Écologique</h2>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-emerald-500">
+                <div class="lang-content fr">
+                    <ul class="space-y-6">
+                        <li>
+                            <div class="flex items-center justify-between mb-2">
+                                <strong class="text-lg text-slate-900">Population</strong>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full">Même
+                                    espèce</span>
+                            </div>
+                            <p class="text-slate-600">Ensemble d'individus de la MÊME espèce vivant dans la même zone
+                                (ex: troupeau de zèbres).</p>
+                        </li>
+                        <li>
+                            <div class="flex items-center justify-between mb-2">
+                                <strong class="text-lg text-slate-900">Communauté (Biocénose)</strong>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full">Toutes
+                                    espèces</span>
+                            </div>
+                            <p class="text-slate-600">Ensemble de TOUTES les populations dans une zone (Zèbres + Lions +
+                                Herbe).</p>
+                        </li>
+                        <hr class="border-slate-200">
+                        <li>
+                            <strong class="text-lg text-emerald-700 block mb-1">ÉCOSYSTÈME</strong>
+                            <p class="text-slate-600 mb-2">Biocénose (Vivants) + Biotope (Milieu Physique) +
+                                Interactions.</p>
+                        </li>
+                        <li>
+                            <strong class="text-lg text-emerald-700 block mb-1">BIOSPHÈRE</strong>
+                            <p class="text-slate-600">Ensemble de tous les écosystèmes. La zone de la Terre où la vie
+                                est possible.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lang-content ar" dir="rtl">
+                    <ul class="space-y-6">
+                        <li>
+                            <div class="flex items-center justify-between mb-2">
+                                <strong class="text-lg text-slate-900">الساكنة (Population)</strong>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full">نفس
+                                    النوع</span>
+                            </div>
+                            <p class="text-slate-600">مجموعة أفراد من نفس النوع تعيش في نفس المنطقة (مثال: قطيع حمير
+                                وحشية).</p>
+                        </li>
+                        <li>
+                            <div class="flex items-center justify-between mb-2">
+                                <strong class="text-lg text-slate-900">العشيرة الإحيائية (Biocénose)</strong>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full">كل
+                                    الأنواع</span>
+                            </div>
+                            <p class="text-slate-600">مجموعة كل الساكنات في منطقة ما (حمير وحشية + أسود + عشب).</p>
+                        </li>
+                        <hr class="border-slate-200">
+                        <li>
+                            <strong class="text-lg text-emerald-700 block mb-1">الحميلة البيئية (Écosystème)</strong>
+                            <p class="text-slate-600 mb-2">العشيرة الإحيائية (كائنات) + المحيا (وسط) + التفاعلات.</p>
+                        </li>
+                        <li>
+                            <strong class="text-lg text-emerald-700 block mb-1">المحيط الحيوي (Biosphère)</strong>
+                            <p class="text-slate-600">مجموع كل الحميلات البيئية. منطقة الكوكب التي توجد فيها الحياة.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="max-w-4xl mx-auto px-4 pb-12 flex justify-between items-center animate-fade-in delay-400">
+        <a href="part 1.html"
+            class="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors bg-white px-6 py-3 rounded-full border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-md">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Précédent</span>
+        </a>
+        <a href="part 3.html"
+            class="flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-3 rounded-full shadow-lg shadow-blue-200 hover:shadow-xl hover:scale-105 transform duration-300 font-bold">
+            <span>Suivant</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let isArabic = false;
+        function toggleLang() {
+            isArabic = !isArabic;
+            const frElements = document.querySelectorAll('.fr');
+            const arElements = document.querySelectorAll('.ar');
+            const btnText = document.getElementById('lang-btn-text');
+
+            if (isArabic) {
+                frElements.forEach(el => el.style.display = 'none');
+                arElements.forEach(el => el.style.display = 'block');
+                btnText.innerText = "Traduire (Français)";
+            } else {
+                frElements.forEach(el => el.style.display = 'block');
+                arElements.forEach(el => el.style.display = 'none');
+                btnText.innerText = "Traduire (Arabe)";
+            }
+        }
+    </script>
+</body>
+
+</html>

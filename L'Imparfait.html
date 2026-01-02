@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Imparfait - Premium</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <script src="pwa.js"></script>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;600&family=Cairo:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vintage: {
+                            50: '#fdfbf7',
+                            100: '#f7f1e3', // Old paper
+                            200: '#e5dcc5',
+                            300: '#d3c0a3',
+                            400: '#a1887f', // Secondary
+                            500: '#795548', // Primary Brown
+                            600: '#5d4037',
+                            700: '#4e342e',
+                            800: '#3e2723',
+                            900: '#281a16',
+                        },
+                        accent: {
+                            DEFAULT: '#ffb74d', // Orange
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Lora', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                        ar: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-vintage {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(121, 85, 72, 0.1);
+        }
+
+        .blur-reveal {
+            filter: blur(5px);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .blur-reveal:hover,
+        .blur-reveal.revealed {
+            filter: blur(0);
+        }
+
+        .ar-text {
+            font-family: 'Cairo', serif;
+            direction: rtl;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-vintage-50 min-h-screen font-sans text-vintage-800 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 glass-vintage shadow-sm border-b border-vintage-200">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <button onclick="window.location.href='index.html'"
+                class="flex items-center gap-2 text-vintage-600 hover:text-vintage-800 transition-colors font-serif italic">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span>Retour au Menu</span>
+            </button>
+            <div class="font-serif font-bold text-xl text-vintage-800">
+                Grammaire Française
+            </div>
+            <div class="flex gap-2">
+                <button onclick="toggleTraduction()"
+                    class="bg-vintage-500 hover:bg-vintage-600 text-white px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center gap-2">
+                    <i data-lucide="languages" class="w-4 h-4"></i> Traduction
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sub-menu Navigation -->
+    <div class="bg-white/50 border-b border-vintage-200 py-3 overflow-x-auto">
+        <div class="max-w-7xl mx-auto px-4 flex gap-2 min-w-max">
+            <a href="Présent de l'indicatif.html"
+                class="px-4 py-1.5 rounded-full text-sm font-medium text-vintage-600 hover:bg-vintage-100 transition-colors">Présent</a>
+            <a href="passé simple.html"
+                class="px-4 py-1.5 rounded-full text-sm font-medium text-vintage-600 hover:bg-vintage-100 transition-colors">Passé
+                Simple</a>
+            <a href="#"
+                class="px-4 py-1.5 rounded-full text-sm font-bold bg-vintage-500 text-white shadow-sm">Imparfait</a>
+            <a href="passe compose.html"
+                class="px-4 py-1.5 rounded-full text-sm font-medium text-vintage-600 hover:bg-vintage-100 transition-colors">Passé
+                Composé</a>
+            <a href="plus-que-parfait.html"
+                class="px-4 py-1.5 rounded-full text-sm font-medium text-vintage-600 hover:bg-vintage-100 transition-colors">Plus-que-parfait</a>
+            <a href="futur simple.html"
+                class="px-4 py-1.5 rounded-full text-sm font-medium text-vintage-600 hover:bg-vintage-100 transition-colors">Futur
+                Simple</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 py-12">
+
+        <!-- Headers -->
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-serif font-bold text-vintage-700 mb-4 italic">L'Imparfait</h1>
+            <p class="text-xl text-vintage-500 font-serif">Le temps des souvenirs et des habitudes...</p>
+        </header>
+
+        <!-- Rule Card -->
+        <div
+            class="bg-[#fff8e1] border-l-4 border-vintage-500 p-8 rounded-r-xl shadow-sm mb-12 relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 text-vintage-200/50">
+                <i data-lucide="feather" class="w-64 h-64"></i>
+            </div>
+
+            <div class="relative z-10">
+                <h3 class="text-2xl font-serif font-bold text-vintage-800 mb-6 flex items-center gap-3">
+                    <i data-lucide="sparkles" class="text-accent"></i>
+                    La Règle Magique
+                </h3>
+
+                <div class="space-y-4 text-lg text-vintage-900/80">
+                    <p class="flex items-start gap-3">
+                        <span
+                            class="bg-vintage-200 text-vintage-800 font-bold w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1">1</span>
+                        <span>On prend le verbe avec <strong>NOUS</strong> au Présent (ex: Nous parlons).</span>
+                    </p>
+                    <p class="flex items-start gap-3">
+                        <span
+                            class="bg-vintage-200 text-vintage-800 font-bold w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1">2</span>
+                        <span>On enlève le "ons".</span>
+                    </p>
+                    <p class="flex items-start gap-3">
+                        <span
+                            class="bg-vintage-200 text-vintage-800 font-bold w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1">3</span>
+                        <span>On ajoute : <strong>-ais, -ais, -ait, -ions, -iez, -aient</strong>.</span>
+                    </p>
+                    <p class="text-vintage-500 text-sm mt-4 pl-9">Exception Unique : <strong>ÊTRE</strong> (J'étais).
+                    </p>
+                </div>
+
+                <div id="ar-text"
+                    class="ar-text hidden mt-6 pt-6 border-t border-vintage-200/50 text-vintage-600 bg-white/50 p-4 rounded-xl">
+                    <strong class="block mb-2 text-vintage-800">التعريف:</strong> هو زمن "كان". كنستعملوه للوصف (La
+                    description) والعادات القديمة (Les habitudes).<br>
+                    <br>
+                    <strong class="block mb-2 text-vintage-800">القاعدة:</strong> سير لـ Présent مع "Nous"، حيد "ons"،
+                    ولصق النهايات: ais, ais, ait, ions, iez, aient.<br>
+                    <br>
+                    <strong class="text-red-500">استثناء وحيد:</strong> فعل Être (كنحفظوه: J'étais...).
+                </div>
+            </div>
+        </div>
+
+        <!-- Conjugation Grid -->
+        <h2 class="text-2xl font-serif font-bold text-vintage-600 mb-6 border-b border-vintage-200 pb-2">Les Auxiliaires
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <!-- ÊTRE -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-vintage-100 flex flex-col items-center">
+                <h3
+                    class="font-serif font-bold text-xl text-vintage-700 mb-4 pb-2 border-b border-vintage-100 w-full text-center">
+                    ÊTRE (Irrégulier)</h3>
+                <ul class="space-y-2 w-full max-w-xs text-lg">
+                    <li class="flex justify-between"><span>J'</span> <strong>étais</strong></li>
+                    <li class="flex justify-between"><span>Tu</span> <strong>étais</strong></li>
+                    <li class="flex justify-between"><span>Il</span> <strong>était</strong></li>
+                    <li class="flex justify-between"><span>Nous</span> <strong>étions</strong></li>
+                    <li class="flex justify-between"><span>Vous</span> <strong>étiez</strong></li>
+                    <li class="flex justify-between"><span>Ils</span> <strong>étaient</strong></li>
+                </ul>
+            </div>
+
+            <!-- AVOIR -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-vintage-100 flex flex-col items-center">
+                <h3
+                    class="font-serif font-bold text-xl text-vintage-700 mb-4 pb-2 border-b border-vintage-100 w-full text-center">
+                    AVOIR (Régulier)</h3>
+                <ul class="space-y-2 w-full max-w-xs text-lg">
+                    <li class="flex justify-between"><span>J'</span> <strong>avais</strong></li>
+                    <li class="flex justify-between"><span>Tu</span> <strong>avais</strong></li>
+                    <li class="flex justify-between"><span>Il</span> <strong>avait</strong></li>
+                    <li class="flex justify-between"><span>Nous</span> <strong>avions</strong></li>
+                    <li class="flex justify-between"><span>Vous</span> <strong>aviez</strong></li>
+                    <li class="flex justify-between"><span>Ils</span> <strong>avaient</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Verb List Table -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-6 gap-4">
+            <h2 class="text-2xl font-serif font-bold text-vintage-600 border-b border-vintage-200 pb-2">Top 30 Verbes
+            </h2>
+            <button onclick="toggleAnswers()"
+                class="btn-toggle text-sm font-semibold text-vintage-500 hover:text-vintage-800 flex items-center gap-2">
+                <i data-lucide="eye-off" class="w-4 h-4"></i> Masquer les réponses
+            </button>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-vintage-100 overflow-hidden mb-16">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-vintage-500 text-white font-serif">
+                        <tr>
+                            <th class="p-4">Verbe</th>
+                            <th class="p-4">Je / J' ...</th>
+                            <th class="p-4">Nous ...</th>
+                            <th class="p-4">Ils / Elles ...</th>
+                        </tr>
+                    </thead>
+                    <tbody id="verb-table" class="divide-y divide-vintage-100">
+                        <!-- Dynamic Rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Game Section -->
+        <section
+            class="bg-gradient-to-br from-vintage-700 to-vintage-900 rounded-3xl p-10 text-center text-vintage-50 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full blur-2xl"></div>
+                <div class="absolute bottom-10 right-10 w-32 h-32 bg-accent rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="relative z-10 max-w-2xl mx-auto">
+                <h2 class="text-3xl font-serif font-bold text-accent mb-2" id="q-text">Prêt ?</h2>
+                <p class="text-vintage-200 mb-8 font-light">(Conjugaison à l'imparfait)</p>
+
+                <input type="text" id="ans-input"
+                    class="w-full max-w-md px-6 py-4 rounded-full text-xl text-center text-vintage-900 outline-none focus:ring-4 focus:ring-accent/50 transition-all shadow-lg placeholder-vintage-300"
+                    placeholder="Tapez votre réponse ici..." autocomplete="off">
+
+                <div class="mt-8 flex justify-center gap-4">
+                    <button onclick="check()"
+                        class="bg-accent hover:bg-white text-vintage-900 font-bold px-8 py-3 rounded-full transition-all shadow-lg hover:scale-105 flex items-center gap-2">
+                        VALIDER <i data-lucide="check" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div id="fb-msg" class="h-8 mt-6 font-bold text-lg"></div>
+                <div class="mt-4 text-vintage-300 text-sm">Score: <span id="score" class="font-bold text-white">0</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        /* --- DATA --- */
+        const verbs = [
+            { v: "Parler", je: "parlais", nous: "parlions", ils: "parlaient", l: "green" },
+            { v: "Finir", je: "finissais", nous: "finissions", ils: "finissaient", l: "green" },
+            { v: "Faire", je: "faisais", nous: "faisions", ils: "faisaient", l: "green" },
+            { v: "Aller", je: "allais", nous: "allions", ils: "allaient", l: "green" },
+            { v: "Venir", je: "venais", nous: "venions", ils: "venaient", l: "green" },
+            // ... more verbs can be added
+            { v: "Manger", je: "mangeais", nous: "mangions", ils: "mangeaient", l: "orange" },
+            { v: "Être", je: "étais", nous: "étions", ils: "étaient", l: "red" },
+        ];
+
+        /* --- LOGIC --- */
+        const tbody = document.getElementById("verb-table");
+
+        function getBadge(level) {
+            const colors = { green: 'bg-emerald-500', orange: 'bg-amber-500', red: 'bg-rose-500' };
+            return `<span class="w-3 h-3 rounded-full ${colors[level]} inline-block mr-2"></span>`;
+        }
+
+        verbs.forEach(v => {
+            let row = `<tr class="hover:bg-vintage-50 transition-colors">
+                <td class="p-4 font-bold text-vintage-800 font-serif">${getBadge(v.l)} ${v.v}</td>
+                <td class="p-4 text-vintage-600 conjugation-cell">${v.je}</td>
+                <td class="p-4 text-vintage-600 conjugation-cell">${v.nous}</td>
+                <td class="p-4 text-vintage-600 conjugation-cell">${v.ils}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+
+        // Toggle Translation
+        function toggleTraduction() {
+            const ar = document.getElementById('ar-text');
+            ar.classList.toggle('hidden');
+        }
+
+        // Blur Toggle
+        let isHidden = false;
+        function toggleAnswers() {
+            isHidden = !isHidden;
+            const cells = document.querySelectorAll('.conjugation-cell');
+            const btn = document.querySelector('.btn-toggle');
+
+            if (isHidden) {
+                btn.innerHTML = '<i data-lucide="eye" class="w-4 h-4"></i> Afficher les réponses';
+                cells.forEach(c => c.classList.add('blur-reveal'));
+            } else {
+                btn.innerHTML = '<i data-lucide="eye-off" class="w-4 h-4"></i> Masquer les réponses';
+                cells.forEach(c => c.classList.remove('blur-reveal'));
+            }
+            lucide.createIcons();
+        }
+
+        /* --- GAME --- */
+        let score = 0;
+        let currentItem = null;
+        let currentKey = "";
+
+        function nextQ() {
+            currentItem = verbs[Math.floor(Math.random() * verbs.length)];
+            let keys = ['je', 'nous', 'ils'];
+            currentKey = keys[Math.floor(Math.random() * keys.length)];
+
+            let phrase = "";
+            if (currentKey === 'je') phrase = "Autrefois, je/j' ...";
+            if (currentKey === 'nous') phrase = "Autrefois, nous ...";
+            if (currentKey === 'ils') phrase = "Autrefois, ils ...";
+
+            document.getElementById("q-text").innerHTML = `${phrase} <span class="text-accent">(${currentItem.v})</span>`;
+            document.getElementById("ans-input").value = "";
+            document.getElementById("fb-msg").innerText = "";
+            document.getElementById("ans-input").focus();
+        }
+
+        function check() {
+            let user = document.getElementById("ans-input").value.trim().toLowerCase();
+            let correct = currentItem[currentKey].toLowerCase();
+            let msg = document.getElementById("fb-msg");
+
+            if (user === correct) {
+                score++;
+                document.getElementById("score").innerText = score;
+                msg.innerText = "Excellent ! 🕰️";
+                msg.className = "h-8 mt-6 font-bold text-lg text-emerald-300";
+                setTimeout(nextQ, 1000);
+            } else {
+                msg.innerText = `Non, c'est : ${correct}`;
+                msg.className = "h-8 mt-6 font-bold text-lg text-rose-300";
+                setTimeout(nextQ, 2000);
+            }
+        }
+
+        document.getElementById("ans-input").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") check();
+        });
+
+        nextQ();
+    </script>
+</body>
+
+</html>

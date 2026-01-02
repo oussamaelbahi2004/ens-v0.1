@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: III. LES NIVEAUX D'ORGANISATION DU CORPS HUMAIN</title>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <script src="pwa.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .ar { font-family: 'Cairo', sans-serif; display: none; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen relative overflow-x-hidden text-slate-800">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <button onclick="window.location.href='menu.html'" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors font-semibold group">
+                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-slate-500 group-hover:text-blue-500"></i>
+                </div>
+                <span>Menu</span>
+            </button>
+            <div class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-emerald-600">
+                SVT - 3
+            </div>
+            <button onclick="toggleLang()" class="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-full hover:shadow-lg transition-all text-sm font-semibold text-blue-600 ring-4 ring-blue-50">
+                <i data-lucide="languages" class="w-4 h-4"></i>
+                <span id="lang-btn-text">Traduction</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-20">
+        
+        <header class="text-center mb-16 animate-fade-in">
+            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold tracking-wider mb-4 uppercase">Partie 3</span>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+                III. LES NIVEAUX D'ORGANISATION DU CORPS HUMAIN
+            </h1>
+        </header>
+
+        
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 shadow-sm">
+                    <i data-lucide="layers" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">1. La Hiérarchie d'Organisation</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-amber-500 mb-6 group hover:border-amber-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-amber-700 mb-4 block">DE LA CELLULE À L'ORGANISME</h3>
+            <p>Le corps humain est construit selon des niveaux de complexité croissante :</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Niveau Chimique :</strong> Atomes et Molécules.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Niveau Cellulaire :</strong> La cellule (unité de base).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Niveau Tissulaire :</strong> Ensemble de cellules (ex: Épithélium, Muscle).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Niveau Organique :</strong> Tissus formant un organe (ex: Estomac).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Niveau Systémique :</strong> Organes formant un système (ex: Digestif).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Niveau Organisme :</strong> L'être humain entier.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-amber-700 mb-4 block">من الخلية إلى الكائن الحي</h3>
+            <p>جسم الإنسان مبني وفق مستويات تعقيد متزايدة:</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>المستوى الكيميائي:</strong> ذرات وجزيئات.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>المستوى الخلوي:</strong> الخلية (الوحدة الأساسية).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>المستوى النسيجي:</strong> مجموعة خلايا (مثال: نسيج ظهاري، عضلة).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>المستوى العضوي:</strong> أنسجة تشكل عضواً (مثال: المعدة).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>المستوى الجهازي:</strong> أعضاء تشكل جهازاً (مثال: الهضمي).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>مستوى الكائن الحي:</strong> الإنسان بأكمله.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-sky-100 flex items-center justify-center text-sky-600 shadow-sm">
+                    <i data-lucide="map" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">2. Organisation Topographique (Cavités)</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-sky-500 mb-6 group hover:border-sky-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-sky-700 mb-4 block">LES CAVITÉS POSTÉRIEURES (Dorsales)</h3>
+            <p>Elles protègent le système nerveux central.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Cavité Crânienne :</strong> Contient l'Encéphale (Cerveau).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Canal Vertébral :</strong> Contient la Moelle Épinière (à l'intérieur de la colonne vertébrale).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-sky-700 mb-4 block">التجاويف الخلفية (الظهرية)</h3>
+            <p>تحمي الجهاز العصبي المركزي.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>التجويف القحفي:</strong> يحتوي على الدماغ.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>القناة الفقرية:</strong> تحتوي على النخاع الشوكي (داخل العمود الفقري).</span></li>
+            </ul>
+                </div>
+            </div>
+                
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-sky-500 mb-6 group hover:border-sky-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-sky-700 mb-4 block">LES CAVITÉS ANTÉRIEURES (Ventrales)</h3>
+            <p>Elles contiennent les viscères (organes internes). Elles sont divisées par le <strong>Diaphragme</strong>.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Cavité Thoracique (Haut) :</strong> Contient le Cœur et les Poumons. Protégée par les côtes.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Cavité Abdominale (Milieu) :</strong> Contient l'Estomac, le Foie, les Intestins, la Rate, les Reins.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Cavité Pelvienne (Bas) :</strong> Contient la Vessie et les Organes Reproducteurs.</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-sky-700 mb-4 block">التجاويف الأمامية (البطنية)</h3>
+            <p>تحتوي على الأحشاء (الأعضاء الداخلية). يفصل بينها <strong>الحجاب الحاجز</strong>.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>التجويف الصدري (فوق):</strong> يحتوي على القلب والرئتين. محمي بالأضلاع.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>التجويف البطني (وسط):</strong> يحتوي على المعدة، الكبد، الأمعاء، الطحال، الكليتين.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>التجويف الحوضي (تحت):</strong> يحتوي على المثانة والأعضاء التناسلية.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-violet-100 flex items-center justify-center text-violet-600 shadow-sm">
+                    <i data-lucide="network" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">3. La Fonction de Relation</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-violet-500 mb-6 group hover:border-violet-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-violet-700 mb-4 block">RÔLE ET SYSTÈMES</h3>
+            <p>Permet à l'organisme d'interagir avec son environnement (Perception + Réaction).</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Système Nerveux :</strong> Reçoit les informations, analyse et commande (Cerveau, Nerfs).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Système Musculaire :</strong> Permet le mouvement et la posture.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Système Squelettique :</strong> Soutient le corps et protège les organes.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Système Sensoriel :</strong> Organes des sens (Yeux, Oreilles, Peau...).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-violet-700 mb-4 block">الدور والأجهزة</h3>
+            <p>تمكن الجسم من التفاعل مع محيطه (الإدراك + رد الفعل).</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز العصبي:</strong> يستقبل المعلومات، يحلل ويأمر (الدماغ، الأعصاب).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز العضلي:</strong> يسمح بالحركة والوضعية.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز الهيكلي:</strong> يدعم الجسم ويحمي الأعضاء.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز الحسي:</strong> أعضاء الحواس (عيون، آذان، جلد...).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-lime-100 flex items-center justify-center text-lime-600 shadow-sm">
+                    <i data-lucide="apple" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">4. La Fonction de Nutrition</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-lime-500 mb-6 group hover:border-lime-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-lime-700 mb-4 block">RÔLE ET SYSTÈMES</h3>
+            <p>Assure l'approvisionnement en matière et énergie, et l'élimination des déchets.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Appareil Digestif :</strong> Transforme les aliments en nutriments absorbables.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Appareil Respiratoire :</strong> Apporte l'Oxygène et élimine le Dioxyde de carbone.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Appareil Circulatoire :</strong> Transporte le sang (Nutriments + Gaz) vers toutes les cellules.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Appareil Urinaire (Excréteur) :</strong> Filtre le sang et élimine les déchets toxiques (Urine).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-lime-700 mb-4 block">الدور والأجهزة</h3>
+            <p>تضمن التزود بالمادة والطاقة، وطرح الفضلات.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز الهضمي:</strong> يحول الأغذية إلى مواد القيت قابلة للامتصاص.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز التنفسي:</strong> يجلب الأكسجين ويطرح ثنائي أكسيد الكربون.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز الدوراني:</strong> ينقل الدم (مواد القيت + الغازات) نحو جميع الخلايا.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز البولي (الإبرازي):</strong> يصفي الدم ويطرح الفضلات السامة (البول).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600 shadow-sm">
+                    <i data-lucide="baby" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">5. La Fonction de Reproduction</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-rose-500 mb-6 group hover:border-rose-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-rose-700 mb-4 block">RÔLE ET SYSTÈMES</h3>
+            <p>Fonction non vitale pour l'individu mais vitale pour l'espèce.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Appareil Génital Masculin :</strong> Production des spermatozoïdes.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Appareil Génital Féminin :</strong> Production des ovules et gestation (Grossesse).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-rose-700 mb-4 block">الدور والأجهزة</h3>
+            <p>وظيفة غير حيوية بالنسبة للفرد لكنها حيوية بالنسبة للنوع.</p>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز التناسلي الذكري:</strong> إنتاج الحيوانات المنوية.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز التناسلي الأنثوي:</strong> إنتاج البويضات والحمل.</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+        <section class="mb-12 animate-fade-in delay-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 shadow-sm">
+                    <i data-lucide="layers" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">6. Maintien et Protection</h2>
+            </div>
+        
+            <div class="glass-card rounded-3xl p-8 shadow-sm border-l-4 border-l-amber-500 mb-6 group hover:border-amber-400">
+                <div class="lang-content fr">
+                    <h3 class="text-xl font-bold text-amber-700 mb-4 block">SYSTÈMES DE DÉFENSE ET RÉGULATION</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Système Immunitaire :</strong> Défend le corps contre les microbes et maladies.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Système Téguementaire :</strong> La Peau (Barrière physique, régulation thermique).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>Système Endocrinien :</strong> Régulation par les Hormones (ex: Thyroïde, Pancréas).</span></li>
+            </ul>
+                </div>
+                <div class="lang-content ar" dir="rtl">
+                    <h3 class="text-xl font-bold text-amber-700 mb-4 block">أجهزة الدفاع والتنظيم</h3>
+            <ul class="space-y-3 mt-2">
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز المناعي:</strong> يدافع عن الجسم ضد الميكروبات والأمراض.</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز اللحافي:</strong> الجلد (حاجز فيزيائي، تنظيم الحرارة).</span></li>
+                <li class="flex gap-3 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0"></span><span><strong>الجهاز الهرموني:</strong> التنظيم بواسطة الهرمونات (مثال: الغدة الدرقية، البنكرياس).</span></li>
+            </ul>
+                </div>
+            </div>
+                </section>
+
+
+    </main>
+
+    <footer class="max-w-4xl mx-auto px-4 pb-12 flex justify-between items-center animate-fade-in delay-300">
+        <a href="part 2.html" class="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors bg-white px-6 py-3 rounded-full border border-slate-200 hover:border-blue-200 shadow-sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Précédent</span>
+        </a>
+        <a href="part 4.html" class="flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transform duration-300 font-bold">
+            <span>Suivant</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let isArabic = false;
+        function toggleLang() {
+            isArabic = !isArabic;
+            const frElements = document.querySelectorAll('.fr');
+            const arElements = document.querySelectorAll('.ar');
+            const btnText = document.getElementById('lang-btn-text');
+
+            if (isArabic) {
+                frElements.forEach(el => el.style.display = 'none');
+                arElements.forEach(el => el.style.display = 'block');
+                btnText.innerText = "Français";
+            } else {
+                frElements.forEach(el => el.style.display = 'block');
+                arElements.forEach(el => el.style.display = 'none');
+                btnText.innerText = "Arabe";
+            }
+        }
+    </script>
+</body>
+</html>
